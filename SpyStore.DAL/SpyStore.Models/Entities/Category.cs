@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +10,10 @@ namespace SpyStore.Models.Entities
     public class Category : EntityBase
     {
         [DataType(DataType.Text), MaxLength(50)]
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
+
+        [InverseProperty(nameof(Product.Category))]
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }
