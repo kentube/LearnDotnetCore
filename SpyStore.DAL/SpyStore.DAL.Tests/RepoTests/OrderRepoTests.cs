@@ -1,9 +1,12 @@
-﻿using SpyStore.DAL.Initializers;
+﻿using System.Linq;
+using SpyStore.DAL.Initializers;
 using SpyStore.DAL.Repos;
 using System;
+using Xunit;
 
-namespace SpyStore.DAL.Tests.ContextTests
+namespace SpyStore.DAL.Tests.RepoTests
 {
+    [Collection("SpyStore.DAL")]
     public class OrderRepoTests : IDisposable
     {
         private readonly OrderRepo _repo;
@@ -19,6 +22,13 @@ namespace SpyStore.DAL.Tests.ContextTests
         {
             StoreDataInitializer.ClearData(_repo.Context);
             _repo.Dispose();
+        }
+
+        [Fact]
+        public void ShouldGetAllOrders()
+        {
+            var orders = _repo.GetAll().ToList();
+            Assert.Single(orders);
         }
     }
 }

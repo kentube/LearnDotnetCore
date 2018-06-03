@@ -23,8 +23,10 @@ namespace SpyStore.DAL.Repos
             _orderDetailRepo = orderDetailRepo;
         }
         public override IEnumerable<Order> GetAll() => Table.OrderByDescending(x => x.OrderDate);
+
         public override IEnumerable<Order> GetRange(int skip, int take)
         => GetRange(Table.OrderByDescending(x => x.OrderDate), skip, take);
+
         public IEnumerable<Order> GetOrderHistory(int customerId)
         => Table.Where(x => x.CustomerId == customerId)
         .Select(x => new Order
@@ -36,6 +38,7 @@ namespace SpyStore.DAL.Repos
         OrderTotal = x.OrderTotal,
             ShipDate = x.ShipDate,
         });
+
         public OrderWithDetailsAndProductInfo GetOneWithDetails(int customerId, int orderId)
         => Table
         .Include(x => x.OrderDetails)

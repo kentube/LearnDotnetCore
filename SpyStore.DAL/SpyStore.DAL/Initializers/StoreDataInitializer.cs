@@ -30,17 +30,18 @@ namespace SpyStore.DAL.Initializers
 
         public static void ExecuteDeleteSQL(StoreContext context, string tableName)
         {
-            context.Database.ExecuteSqlCommand($"Delete from Store.{tableName}");
+            var sql = $"Delete from Store.{tableName}";
+            context.Database.ExecuteSqlCommand(sql);
         }
 
         public static void ResetIdentity(StoreContext context)
         {
-            var tables = new[] {"Categories","Customers",
-"OrderDetails","Orders","Products","ShoppingCartRecords"};
+            var tables = new[] { "Categories", "Customers", "OrderDetails", "Orders", "Products", "ShoppingCartRecords" };
 
             foreach (var itm in tables)
             {
-                context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT (\"Store.{itm}\", RESEED, -1);");
+                var sql = $"DBCC CHECKIDENT (\"Store.{itm}\", RESEED, -1);";
+                context.Database.ExecuteSqlCommand(sql);
             }
         }
 
@@ -53,22 +54,26 @@ namespace SpyStore.DAL.Initializers
                     context.Categories.AddRange(StoreSampleData.GetCategories());
                     context.SaveChanges();
                 }
+
                 if (!context.Products.Any())
                 {
                     context.Products.AddRange(StoreSampleData.GetProducts(context.Categories.ToList()));
                     context.SaveChanges();
                 }
+
                 if (!context.Customers.Any())
                 {
                     context.Customers.AddRange(StoreSampleData.GetAllCustomerRecords(context));
                     context.SaveChanges();
                 }
+
                 var customer = context.Customers.FirstOrDefault();
                 if (!context.Orders.Any())
                 {
                     context.Orders.AddRange(StoreSampleData.GetOrders(customer, context));
                     context.SaveChanges();
                 }
+
                 if (!context.ShoppingCartRecords.Any())
                 {
                     context.ShoppingCartRecords.AddRange(

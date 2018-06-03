@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SpyStore.DAL.EF;
 using SpyStore.DAL.Repos.Base;
-using SpyStore.Models.Entities;
 using SpyStore.DAL.Repos.Interfaces;
+using SpyStore.Models.Entities;
 using SpyStore.Models.ViewModels.Base;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SpyStore.DAL.Repos
 {
