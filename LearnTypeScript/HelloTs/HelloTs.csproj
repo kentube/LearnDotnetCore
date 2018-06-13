@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\CustomerAnonymous.ts" />
+    <None Remove="src\CustomerBase.ts" />
+    <None Remove="src\CustomerBronze.ts" />
+    <None Remove="src\CustomerGold.ts" />
+    <None Remove="src\CustomerSilver.ts" />
+    <None Remove="src\ICustomer.ts" />
+    <None Remove="src\IndexVM.ts" />
+    <None Remove="src\IProduct.ts" />
+    <None Remove="src\Product.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.StaticFiles" Version="1.0.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="src\CustomerAnonymous.ts" />
+    <TypeScriptCompile Include="src\CustomerBase.ts" />
+    <TypeScriptCompile Include="src\CustomerBronze.ts" />
+    <TypeScriptCompile Include="src\CustomerGold.ts" />
+    <TypeScriptCompile Include="src\CustomerSilver.ts" />
+    <TypeScriptCompile Include="src\ICustomer.ts" />
+    <TypeScriptCompile Include="src\IndexVM.ts" />
+    <TypeScriptCompile Include="src\IProduct.ts" />
+    <TypeScriptCompile Include="src\Product.ts" />
+  </ItemGroup>
+
+</Project>
