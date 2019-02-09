@@ -11,10 +11,10 @@ $magick = "C:\Program Files\ImageMagick-7.0.8-Q8\magick"
 $ocrexe = "c:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
 
 Get-ChildItem $workPath\screen_*_0.png | ForEach-Object {
-	$imgSrc = $_.name
+	$imgSrc = $workPath + "\" + $_.name
 	write-host $imgSrc
-	$imgResult = $_.name.Replace("_0.png","_1.png")
-	$txtResult = $imgResult.Replace("_1.png","_2.dat")
+	$imgResult = $workPath + "\" + $_.name.Replace("_0.png","_1.png")
+	$txtResult = $workPath + "\" + $_.name.Replace("_0.png","_2.dat")
 	&  $magick $imgSrc `
 		-crop $CropSetting `
 		-set colorspace Gray -separate -evaluate-sequence Mean `
